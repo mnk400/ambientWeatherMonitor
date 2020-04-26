@@ -24,7 +24,13 @@ class sensorReader(object):
         """
         return self.sense.get_humidity()
 
+    def getPressure(self):
+        """
+        docs
+        """
+        return self.sense.get_pressure()
+
 
 if __name__ == "__main__":
     s = sensorReader()
-    print(s.getTemperature())
+    print(s.getPressure())

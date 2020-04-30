@@ -3,16 +3,19 @@ from sensorValueReader import sensorReader
 from jsonParser import jsonParser
 from time import sleep
 import threading
+import logging
 
+logging.getLogger("awm-logger")
 
 class Publisher(threading.Thread):
 
+    interval = 600
     def __init__(self):
+        logging.info("Initializing MQTT publishing with interval " + str(self.interval))
         threading.Thread.__init__(self)
         self.client = client()
         self.sensor = sensorReader.getInstance()
         self.parser = jsonParser()
-        self._stop = threading.Event()
 
     def run(self):
         self.client.connectMqtt()
@@ -24,13 +27,10 @@ class Publisher(threading.Thread):
 
             self.client.connectMqtt()
             self.client.publishData(jsonStr)
-            sleep(300)
+            sleep(self.interval)
 
         self.client.disconnect()
     
-    def stop(self):
-        print("stopping mqtt publisher")
-        self._stop.set()
 
 if __name__ == "__main__":
     dr = Publisher()

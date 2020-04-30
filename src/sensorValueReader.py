@@ -1,5 +1,7 @@
 from sense_hat import SenseHat
+import logging
 
+logging.getLogger("awm-logger")
 
 class sensorReader(object):
     """
@@ -34,7 +36,6 @@ class sensorReader(object):
         """
         docs
         """
-        
         return round(self.sense.get_temperature(),1)
 
     def getHumidity(self):

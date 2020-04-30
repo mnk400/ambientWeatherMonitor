@@ -6,7 +6,7 @@ import sys
 import logging
 
 logging.getLogger("awm-logger")
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+logging.basicConfig(filename="logs/awm.log",format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 class Executer(object):
 

@@ -3,8 +3,7 @@ import logging
 from time import sleep
 
 # Get a logger
-logging.getLogger("mqttLogger")
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+logging.getLogger("awm-logger")
 
 
 class client(object):
@@ -26,13 +25,13 @@ class client(object):
             logging.error("MQTT:Exception:Connection Issue" + str(e))
 
     def on_connect(self, client, userdata, flags, rc):
-        logging.info("Connected")
+        logging.info("Connected MQTT")
 
     def on_message(self, client, userdata, message):
-        logging.info("New Message" + str(message.payload.decode()))
+        logging.info("New MQTT message" + str(message.payload.decode()))
 
     def on_disconnect(self, client, userdata, rc):
-        logging.info("Disconnected")
+        logging.info("Disconnected MQTT")
 
     def connectMqtt(self) -> bool:
         self.mqtt.connect(self.address, self.port)
@@ -43,7 +42,7 @@ class client(object):
         self.mqtt.disconnect()
 
     def publishData(self, data) -> bool:
-        logging.info("MQTT:Publishing")
+        logging.info("Publishing a MQTT message")
         self.mqtt.publish(self.topic, data)
         return True
 

@@ -1,5 +1,7 @@
 import json
+import logging
 
+logging.getLogger("awm-logger")
 
 class jsonParser(object):
 

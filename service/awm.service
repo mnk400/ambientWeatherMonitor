@@ -1,0 +1,10 @@
+[Unit]
+Description=Ambient Weather Monitor at port 6969
+After=multi-user.target
+[Service]
+Type=idle
+User=pi
+WorkingDirectory=/home/pi/ambientWeatherMonitor
+ExecStart=/usr/bin/python3.7 /home/pi/ambientWeatherMonitor/src/executer.py
+[Install]
+WantedBy=multi-user.target

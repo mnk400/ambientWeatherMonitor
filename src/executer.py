@@ -9,7 +9,10 @@ logging.getLogger("awm-logger")
 logging.basicConfig(filename="logs/awm.log",format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 class Executer(object):
-
+    '''
+    Class to execute the HTTP server thread
+    and the MQTT publisher thread.
+    '''
     def exec(self):
         s = Server()
         p = Publisher()
@@ -19,9 +22,7 @@ class Executer(object):
         p.start()
         logging.info("MQTT Publisher starting")
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    e = Executer()
-    e.exec()
-
-    
+#     e = Executer()
+#     e.exec()

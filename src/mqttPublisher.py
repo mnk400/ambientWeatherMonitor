@@ -8,6 +8,10 @@ import logging
 logging.getLogger("awm-logger")
 
 class Publisher(threading.Thread):
+    '''
+    Threaded class to publish MQTT
+    messages
+    '''
 
     interval = 600
     def __init__(self):
@@ -18,6 +22,10 @@ class Publisher(threading.Thread):
         self.parser = jsonParser()
 
     def run(self):
+        '''
+        run function to create JSONs using jsonParser
+        and publish them using mqttClient
+        '''
         self.client.connectMqtt()
         while True:
             temp = self.sensor.getTemperature()
@@ -32,6 +40,6 @@ class Publisher(threading.Thread):
         self.client.disconnect()
     
 
-if __name__ == "__main__":
-    dr = Publisher()
-    dr.start()
+# if __name__ == "__main__":
+#     dr = Publisher()
+#     dr.start()

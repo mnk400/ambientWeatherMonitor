@@ -13,7 +13,6 @@
 from random import uniform
 
 class ACTION_PRESSED:
-    
     pass
 
 class act:

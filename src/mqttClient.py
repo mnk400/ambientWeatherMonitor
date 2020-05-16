@@ -7,6 +7,9 @@ logging.getLogger("awm-logger")
 
 
 class client(object):
+    '''
+    MQTT client class
+    '''
 
     address = "broker.hivemq.com"
     port = 1883
@@ -34,21 +37,30 @@ class client(object):
         logging.info("Disconnected MQTT")
 
     def connectMqtt(self) -> bool:
+        '''
+        Function to connect to an address and port
+        '''
         self.mqtt.connect(self.address, self.port)
         sleep(0.2)
         return True
     
     def disconnect(self):
+        '''
+        Function to disconnect
+        '''
         self.mqtt.disconnect()
 
     def publishData(self, data) -> bool:
+        '''
+        Function to publish an MQTT message
+        '''
         logging.info("Publishing a MQTT message")
         self.mqtt.publish(self.topic, data)
         return True
 
 
-if __name__ == "__main__":
-    mqt = client()
-    mqt.connectMqtt()
-    sleep(0.5)
-    mqt.publishData("hello")
+# if __name__ == "__main__":
+#     mqt = client()
+#     mqt.connectMqtt()
+#     sleep(0.5)
+#     mqt.publishData("hello")

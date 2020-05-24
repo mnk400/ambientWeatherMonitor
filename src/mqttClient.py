@@ -11,12 +11,11 @@ class client(object):
     MQTT client class
     '''
 
-    address = "broker.hivemq.com"
-    port = 1883
-
-    topic = "test/manik"
-
-    def __init__(self):
+    def __init__(self, host, port, topic):
+        self.address = host
+        self.port = port
+        self.topic = topic
+        
         try:
             # A client for the sensorData
             self.mqtt = mqtt.Client()

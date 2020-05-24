@@ -1,0 +1,17 @@
+[awm]
+interval = 15
+
+[influxdb]
+enable = false
+host = localhost
+port = 8086
+
+[mqtt]
+enable = true
+host = broker.hivemq.com
+port = 1883
+topic = test/manik
+
+[http]
+enable = false
+port = 6969

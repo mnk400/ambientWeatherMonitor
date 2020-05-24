@@ -48,24 +48,25 @@ class Server(threading.Thread):
     Class to create the HTTP server
     '''
 
-    def __init__(self):
+    def __init__(self, port):
         '''
         Constructor
         '''
         logging.info("Initializing HTTP Server")
         threading.Thread.__init__(self)
+        self.port = port
 
     def run(self):
         '''
         run function for the thread to start the
         HTTP server
         '''
-        httpd = HTTPServer(('0.0.0.0', 6969), RequestHandler)
+        httpd = HTTPServer(('0.0.0.0', self.port), RequestHandler)
         httpd.serve_forever()
         logging.info("HTTP Server starter")
 
 
 
-# if __name__ == "__main__":
-#     s = Server()
-#     s.start()
+if __name__ == "__main__":
+    s = Server()
+    s.start()

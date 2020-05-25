@@ -35,7 +35,7 @@ class Executer(object):
 
         #Read the interval
         self.interval   = self.cUtil.getIntegerValue('awm','interval') * 60
-        self.enableReader = self.cUtil.getIntegerValue('awm','enableReader')
+        self.enableReader = self.cUtil.getValue('awm','enableReader')
 
         #HTTP configuration
         self.enableHttp = self.cUtil.getValue('http','enable')
@@ -62,25 +62,29 @@ class Executer(object):
         '''
         Function to execute the program
         '''
-        
+
+        #Checking if HTTP is enabled
         if self.enableHttp == 'true':
             http = Server(self.httpPort)
             http.start()
             logging.info("HTTP Server starting")
         
-
+        #Initializing a reader instance
         sensorReader = Reader(interval=self.interval)
-
+        
+        #Adding mqtt client to reader if enabled
         if self.enableMqtt == 'true':
             mqttClient = client(self.mqttHost, self.mqttPort, self.mqttTopic)
             sensorReader.mqttClient = mqttClient
             logging.info("MQTT Publisher starting")
         
+        #Adding database  client to reader if enabled
         if self.enableDb == 'true':
             influxClient = dbClient(self.dbHost, self.dbPort, self.database, self.dbUsername, self.dbPassword)
             sensorReader.dbClient = influxClient
             logging.info("Influx Client starting")
         
+        #Starting thread if reader enabled
         if self.enableReader == 'true':
             sensorReader.start()
 

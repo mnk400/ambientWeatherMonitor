@@ -29,8 +29,7 @@ class jsonParser(object):
                             'temperature' : temperature,
                             'humidity' : humidity,
                             'pressure' : pressure,
-                        },
-                        'time' : round(timestamp)
+                        }
         }
 
         jsonStr = json.dumps(jsonData)

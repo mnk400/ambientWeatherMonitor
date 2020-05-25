@@ -1,5 +1,6 @@
 import json
 import logging
+from datetime import datetime
 
 logging.getLogger("awm-logger")
 
@@ -17,10 +18,19 @@ class jsonParser(object):
         Function for creating a
         JSON string
         '''
+        now = datetime.now()
+        timestamp = datetime.timestamp(now)
         jsonData = {
-                        "temperature": temperature,
-                        "humidity": humidity,
-                        "pressure": pressure,
+                        'measurement' : 'awm',
+                        'tags' : {
+                            'location' : 'home'
+                        },
+                        'fields' : {
+                            'temperature' : temperature,
+                            'humidity' : humidity,
+                            'pressure' : pressure,
+                        },
+                        'time' : round(timestamp)
         }
 
         jsonStr = json.dumps(jsonData)

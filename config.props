@@ -1,17 +1,21 @@
 [awm]
+enableReader = true
 interval = 15
 
 [influxdb]
-enable = false
-host = localhost
+enable = true
+host = 127.0.0.1
 port = 8086
+database = awm
+username = grafana
+password = ag1966
 
 [mqtt]
-enable = true
+enable = false
 host = broker.hivemq.com
 port = 1883
 topic = test/manik
 
 [http]
-enable = false
+enable = true
 port = 6969

@@ -37,6 +37,9 @@ class Reader(threading.Thread):
             if self.mqttClient != None:
                 self.mqttClient.connectMqtt()
                 self.mqttClient.publishData(jsonStr)
+            
+            if self.dbClient != None:
+                self.dbClient.writetodb(jsonStr)
             sleep(self.interval)
 
         self.client.disconnect()

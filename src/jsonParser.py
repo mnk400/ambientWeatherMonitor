@@ -18,8 +18,10 @@ class jsonParser(object):
         Function for creating a
         JSON string
         '''
-        now = datetime.now()
-        timestamp = datetime.timestamp(now)
+        #now = datetime.now()
+        #timestamp = datetime.timestamp(now)
+        #timestamp = timestamp * 1000000000
+        #print(timestamp)
         jsonData = {
                         'measurement' : 'awm',
                         'tags' : {
@@ -29,7 +31,8 @@ class jsonParser(object):
                             'temperature' : temperature,
                             'humidity' : humidity,
                             'pressure' : pressure,
-                        }
+                        }#,
+                        #'time' : round(timestamp)
         }
 
         jsonStr = json.dumps(jsonData)
